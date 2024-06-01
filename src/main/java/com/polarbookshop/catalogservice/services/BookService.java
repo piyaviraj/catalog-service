@@ -3,7 +3,7 @@ package com.polarbookshop.catalogservice.services;
 import com.polarbookshop.catalogservice.domain.Book;
 import com.polarbookshop.catalogservice.exceptions.BookAlreadyExistException;
 import com.polarbookshop.catalogservice.exceptions.BookNotFoundException;
-import com.polarbookshop.catalogservice.repositories.BookRepository;
+import com.polarbookshop.catalogservice.domain.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -37,10 +37,15 @@ public class BookService {
         return bookRepository.findByIsbn(isbn)
             .map(exitingBook -> {
                 var bookToEdit = new Book(
-                    isbn,
+                    exitingBook.id(),
+                    exitingBook.isbn(),
                     book.title(),
                     book.author(),
-                    book.price()
+                    book.price(),
+                    book.isbn(),
+                    exitingBook.createdDate(),
+                    exitingBook.lastModifiedDate(),
+                    exitingBook.version()
                 );
                 return bookRepository.save(bookToEdit);
             }).orElseGet(() -> addBookToCatalog(book));

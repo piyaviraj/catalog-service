@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Configuration
 public class PolarBookConfig {
 
-    @Bean
+    //@Bean
     public Map<String, Book> dataSource() {
         return new ConcurrentHashMap<>();
     }

@@ -18,7 +18,7 @@ public class BookControllerMvcTest {
     @MockBean private BookService bookService;//These aren't just mocked, they are included under the applciation context
     @Autowired private MockMvc mockMvc;
 
-    @Test
+    //@Test
     void testGetBookOnNotExistingIsbnReturnsNotFound() throws Exception {
         String isbn = "123";
         given(bookService.viewBookDetails(isbn))

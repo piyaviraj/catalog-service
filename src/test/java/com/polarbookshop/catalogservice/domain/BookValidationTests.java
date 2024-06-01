@@ -22,14 +22,14 @@ public class BookValidationTests {
 
     @Test
     void testValidateBookAllFieldsValid() {
-        var book = new Book("9780596520687", "Title", "Author", 9.90);
+        var book = Book.of("9780596520687", "Title", "Author", 9.90, "Polarsophia");
         var violations = validator.validate(book);
         assertThat(violations, emptyIterable());
     }
 
     @Test
     void testValidateBookIsbnInvalid() {
-        var book = new Book("invalid", "Title", "Author", 9.0);
+        var book = Book.of("invalid", "Title", "Author", 9.0, "Polarsophia");
         var violations = validator.validate(book);
         assertThat(violations, iterableWithSize(1));
         assertThat(violations.stream().map(ConstraintViolation::getMessage).toList(),
