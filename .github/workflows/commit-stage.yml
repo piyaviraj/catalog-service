@@ -41,8 +41,6 @@ jobs:
           ./mvnw package
       - name: Install arkade
         uses: alexellis/setup-arkade@v2
-      - name: Setup arkade
-        uses: alexellis/arkade@v2
       - name: Get kubectl and kubeval
         run: |
           arkade get kubectl
