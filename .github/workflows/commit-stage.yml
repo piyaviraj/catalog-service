@@ -39,11 +39,12 @@ jobs:
         run: |
           chmod +x mvnw
           ./mvnw package
-      - name: Install arkade
-        uses: alexellis/arkade-get@master
-        with:
-          kubectl: v1.25.0
-          kubeval: 0.16.1
+      - name: Setup arkade
+        uses: alexellis/arkade@v2
+      - name: Get kubectl and kubeval
+        run: |
+          arkade get kubectl
+          arkade get kubeval
       - name: Validate Kubernetes manifests
         run: |
           kubeval --strict -d k8s
